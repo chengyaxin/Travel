@@ -22,8 +22,8 @@
           loop:true
         },
         swiperList:[
-        {id:'0001',imgUrl:'http://img1.qunarzz.com/piao/fusion/1806/12/a100ed94e5ea3102.jpg_750x200_03956e08.jpg'},
-        {id:'0002',imgUrl:'http://img1.qunarzz.com/piao/fusion/1807/66/e5a5cec881702f02.jpg_750x200_67bb5691.jpg'}
+        {id:'0001',imgUrl:require('@/assets/images/swiper1.jpg')},
+        {id:'0002',imgUrl:require('@/assets/images/swiper2.jpg')}
         ]
       }
     },

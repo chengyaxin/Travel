@@ -1,12 +1,16 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <home-header></home-header>
   </div>
 </template>
 
 <script>
+import HomeHeader from './pages/home/Home.vue'
 export default {
-  name: 'App'
+  name: 'App',
+  components:{
+  	HomeHeader
+  }
 }
 </script>
 
