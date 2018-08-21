@@ -1,8 +1,9 @@
 <template>
  <div class="wriper">
- 	<swiper :options="swiperOption">
+ <!-- 加v-if="list.length",表示list中有数据的时候才创建这个swiper,为了解决页面初始化时最先出现第四章轮播图 -->
+ 	<swiper :options="swiperOption" v-if="showSwiper">
     <!-- slides -->
-    <swiper-slide v-for="item of swiperList" :key="item.id">
+    <swiper-slide v-for="item of list" :key="item.id">
       <img class="swiper-img" :src="item.imgUrl"/>
     </swiper-slide>
     
@@ -13,21 +14,24 @@
 </template>
 <script>
   export default {
-     name: 'carrousel',
+    name: 'carrousel',
     data() {
       return {
         swiperOption: {
           autoplay: true,
           pagination : {el:'.swiper-pagination'},
           loop:true
-        },
-        swiperList:[
-        {id:'0001',imgUrl:require('@/assets/images/swiper1.jpg')},
-        {id:'0002',imgUrl:require('@/assets/images/swiper2.jpg')}
-        ]
+        }
       }
     },
+    props:{
+      list:Array
+    },
     computed: {
+      showSwiper()
+      {
+        return this.list.length
+      }
     },
     mounted() {
     }

@@ -2,7 +2,7 @@
 	<div>
 		<div class="recommend-title">热销推荐</div>
 		<ul>
-			<li class="item border-bottom" v-for="item of recommendList" :key="item.id">
+			<li class="item border-bottom" v-for="item of list" :key="item.id">
 				<div class="">
 					<img class="item-img" :src="item.imgUrl">
 				</div>
@@ -21,14 +21,12 @@
 		data()
 		{
 			return {
-				recommendList:[
-					{id:"0001",imgUrl:require("@/assets/images/recommend1.jpg"),title:"杭州彻天彻地童玩中心",desc:"浪漫的世界儿童乐园"},
-					{id:"0002",imgUrl:require("@/assets/images/recommend1.jpg"),title:"杭州彻天彻地童玩中心",desc:"浪漫的世界儿童乐园"},
-					{id:"0003",imgUrl:require("@/assets/images/recommend1.jpg"),title:"杭州彻天彻地童玩中心",desc:"浪漫的世界儿童乐园"},
-					{id:"0004",imgUrl:require("@/assets/images/recommend1.jpg"),title:"杭州彻天彻地童玩中心",desc:"浪漫的世界儿童乐园"},
-				]
+				
 			}
 		},
+		props:{
+			list:Array
+		}
 	}
 </script>
 <style lang="stylus" scoped>
