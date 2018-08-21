@@ -1,16 +1,14 @@
 <template>
-  <div id="app">
-    <home-header></home-header>
+   <div id="app">
+    <keep-alive exclude="Detail">
+      <router-view/>
+    </keep-alive>
   </div>
 </template>
 
 <script>
-import HomeHeader from './pages/home/Home.vue'
 export default {
   name: 'App',
-  components:{
-  	HomeHeader
-  }
 }
 </script>
 
