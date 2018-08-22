@@ -13,64 +13,16 @@
 			<div class="area">
 				<div class="title border-topbottom">热门城市</div>
 				<div class="button-list">
-					<div class="button-wrapper">
-						<div class="button">济源</div>
-					</div>
-					<div class="button-wrapper">
-						<div class="button">济源</div>
-					</div>
-					<div class="button-wrapper">
-						<div class="button">济源</div>
-					</div>
-					<div class="button-wrapper">
-						<div class="button">济源</div>
+					<div class="button-wrapper" v-for="item of hot" :key="item.id">
+						<div class="button">{{item.name}}</div>
 					</div>
 				</div>
 			</div>	
-			<div class="area">
-				<div class="title border-topbottom">A</div>
-				<div class="item-list">
+			<div class="area" v-for="(item,index) of cities" :ref="index" :key="index">
+				<div class="title border-topbottom">{{index}}</div>
+				<div class="item-list" v-for="city of item" :key="city.id">
 					<div class="item border-bottom">
-						阿拉尔
-					</div>
-					<div class="item border-bottom">
-						阿拉尔
-					</div>
-					<div class="item border-bottom">
-						阿拉尔
-					</div>
-					<div class="item border-bottom">
-						阿拉尔
-					</div>
-				</div>
-				<div class="title border-topbottom">B</div>
-				<div class="item-list">
-					<div class="item border-bottom">
-						阿拉尔
-					</div>
-					<div class="item border-bottom">
-						阿拉尔
-					</div>
-					<div class="item border-bottom">
-						阿拉尔
-					</div>
-					<div class="item border-bottom">
-						阿拉尔
-					</div>
-				</div>
-				<div class="title border-topbottom">C</div>
-				<div class="item-list">
-					<div class="item border-bottom">
-						阿拉尔
-					</div>
-					<div class="item border-bottom">
-						阿拉尔
-					</div>
-					<div class="item border-bottom">
-						阿拉尔
-					</div>
-					<div class="item border-bottom">
-						阿拉尔
+						{{city.name}}
 					</div>
 				</div>
 			</div>	
@@ -84,6 +36,22 @@ import BScroll from 'better-scroll'
 		mounted()
 		{
 			this.scroll = new BScroll(this.$refs.wrapper)
+		},
+		props:{
+			cities:Object,
+			hot:Array,
+			letter:String
+		},
+		watch:
+		{
+			letter()
+			{
+				if(letter)
+				{
+					const element = this.$refs[this.letter][0]
+        			this.scroll.scrollToElement(element)
+				}
+			}
 		}
 	}
 </script>

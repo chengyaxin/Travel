@@ -1,15 +1,25 @@
 <template>
 	<div class="list">
-		<li class="item">A</li>
-		<li class="item">B</li>
-		<li class="item">C</li>
-		<li class="item">D</li>
+		<li class="item" v-for="item of letters" :key="item" :ref="item">{{item}}</li>
 	</div>
 </template>
 <script>
 	export default {
 		name:"CityAlphabet",
-
+		props:{
+			cities:Object,
+		},
+		computed:{
+			letters()
+			{
+				const letters = []
+				for(let i in this.cities)
+				{
+					letters.push(i)
+				}
+				return letters
+			}
+		}
 	}
 </script>
 <style lang="stylus" scoped>
