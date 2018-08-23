@@ -6,14 +6,14 @@
 				<div class="title border-topbottom">当前城市</div>
 				<div class="button-list">
 					<div class="button-wrapper">
-						<div class="button">济源</div>
+						<div class="button">{{this.currentCity}}</div>
 					</div>
 				</div>
 			</div>	
 			<div class="area">
 				<div class="title border-topbottom">热门城市</div>
 				<div class="button-list">
-					<div class="button-wrapper" v-for="item of hot" :key="item.id">
+					<div class="button-wrapper" v-for="item of hot" :key="item.id" @click="handleCityClick(item.name)">
 						<div class="button">{{item.name}}</div>
 					</div>
 				</div>
@@ -21,7 +21,7 @@
 			<div class="area" v-for="(item,index) of cities" :ref="index" :key="index">
 				<div class="title border-topbottom">{{index}}</div>
 				<div class="item-list" v-for="city of item" :key="city.id">
-					<div class="item border-bottom">
+					<div class="item border-bottom"  @click="handleCityClick(city.name)">
 						{{city.name}}
 					</div>
 				</div>
@@ -31,16 +31,19 @@
 </template>
 <script>
 import BScroll from 'better-scroll'
+import { mapState,mapMutations } from 'vuex'
 	export default {
 		name:"CityList",
-		mounted()
-		{
-			this.scroll = new BScroll(this.$refs.wrapper)
-		},
 		props:{
 			cities:Object,
 			hot:Array,
 			letter:String
+		},
+		computed:{
+			//也可以给该计算属性起个新名字currentCity
+			...mapState({
+				currentCity:'city'
+			})
 		},
 		watch:
 		{
@@ -52,6 +55,23 @@ import BScroll from 'better-scroll'
 					this.scroll.scrollToElement(this.$refs[this.letter][0])
 				}
 			}
+		},
+		methods:{
+			handleCityClick(city)
+			{
+				//1.派发一个名字是changeCity的Action，把city传过去，以此来改变city
+				// this.$store.dispatch("changeCity",city)
+				// 2.略过action,直接commit给mutation来改变city
+				// this.$store.commit("changeCity",city)
+				//3.可以通过mapMutations来实现commit给mutation来改变city
+				this.changeCity(city)
+				this.$router.push('/')
+			},
+			...mapMutations(["changeCity"])
+		},
+		mounted()
+		{
+			this.scroll = new BScroll(this.$refs.wrapper)
 		}
 	}
 </script>

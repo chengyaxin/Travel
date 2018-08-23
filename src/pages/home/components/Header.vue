@@ -11,6 +11,9 @@
 	</div>
 	<router-link to="/city">
 		<div class="header-right">
+			<!-- 1.可以通过这种方式直接获取store中的数据 -->
+			<!-- {{this.$store.state.city}} -->
+			<!-- {{this.doubleCity}} -->
 			{{this.city}}
 			<span class="iconfont arrow-icon">&#xe6aa;</span>
 		</div>
@@ -19,10 +22,13 @@
 </div>
 </template>
 <script>
+import { mapState,mapGetters } from 'vuex'
 export default {
   name: 'HeaderVue',
-  props:{
-  	city:String
+  computed:{
+  	//2.扩展运算符:...,mapState是指把vuex里的数据映射到此组件的计算属性里,即把公用数据city映射到计算属性的city中
+  	...mapState(['city']),
+  	...mapGetters(['doubleCity'])
   }
 }
 </script>
@@ -50,7 +56,8 @@ export default {
 		border-radius:.1rem
 		color:#ccc
 	.header-right
-		width:1.24rem
+		min-width:1.04rem
+		padding:0 .1rem
 		float:right
 		text-align:center
 		color:#fff
