@@ -40,6 +40,7 @@ export default {
 			})
 		},
 		handleLetterChange (letter) {
+			//监听Alphabet传过来的change
 	      this.letter = letter
 	    }
 	},

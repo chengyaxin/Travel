@@ -46,10 +46,10 @@ import BScroll from 'better-scroll'
 		{
 			letter()
 			{
-				if(letter)
+				if(this.letter)
 				{
-					const element = this.$refs[this.letter][0]
-        			this.scroll.scrollToElement(element)
+					//this.$refs[this.letter]数组而不是dom元素或者dom选择器
+					this.scroll.scrollToElement(this.$refs[this.letter][0])
 				}
 			}
 		}
