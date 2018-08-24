@@ -44,6 +44,10 @@
 		activated ()
 		{
 			window.addEventListener('scroll',this.handleScroll)
+		},
+		deactivated ()
+		{//为了解决跳转到其他页面时仍然执行window.addEventListener事件的问题,即解绑
+			window.removeEventListener('scroll',this.handleScroll)
 		}
 	}
 </script>
