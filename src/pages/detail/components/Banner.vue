@@ -9,15 +9,20 @@
 			</span>{{this.gallaryImgs.length}}</div>
 			</div>
 		</div>
-		<common-gallary :imgs="gallaryImgs" v-show="showGallary" @close="handleGallaryClose"></common-gallary>
+		fade-animation是一个插槽的形式的组件，将common-gallary插在fade-animation组件中
+		<fade-animation>
+			<common-gallary :imgs="gallaryImgs" v-show="showGallary" @close="handleGallaryClose"></common-gallary>
+		</fade-animation>
 	</div>
 </template>
 <script>
 import CommonGallary from "common/gallary/Gallary"
+import FadeAnimation from "common/fade/FadeAnimation.vue"
 	export default {
 		name:"Banner",
 		components:{
-			CommonGallary
+			CommonGallary,
+			FadeAnimation
 		},
 		props:{
 			sightName:String,
